@@ -12,7 +12,7 @@ import ru.finan.finserver.user.service.UserService;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/finserver")
 public class UserController {
     private final AuthenticationService authenticationService;
     private final UserService userService;
@@ -29,12 +29,12 @@ public class UserController {
         return authenticationService.signIn(request);
     }
 
-    @DeleteMapping("/users")
+    @DeleteMapping("/user")
     public void deleteUser(Authentication authentication) {
         userService.deleteUser(authentication);
     }
 
-    @GetMapping("/example")
+    @GetMapping("/user")
     public UserDto getUserByName(Authentication authentication) {
         log.info("запрос с token: " + authenticationService);
         return userService.getUserByName(authentication);
