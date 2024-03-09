@@ -2,12 +2,12 @@ package ru.finan.finserver.finanse.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.finan.finserver.user.service.PasswordService;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Service
 @RequiredArgsConstructor
+@RequestMapping("/finance")
 public class FinanceController {
-    private final PasswordService passwordService;
 
     public String getFinance() {
         return null;
