@@ -7,7 +7,7 @@ import ru.finan.finserver.category.model.Category;
 import ru.finan.finserver.trend.model.Trend;
 import ru.finan.finserver.user.model.User;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -23,7 +23,7 @@ public class Expense {
     private long id;
 
     @Column(nullable = false)
-    private LocalDateTime created;
+    private LocalDate created;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
