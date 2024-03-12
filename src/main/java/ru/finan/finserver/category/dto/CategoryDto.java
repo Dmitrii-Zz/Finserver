@@ -12,6 +12,6 @@ public class CategoryDto {
     @Schema(description = "Название категории", example = "бензин")
     private String name;
 
-    @Schema(description = "Является ли это доходом?", example = "false")
-    private boolean isSpending;
+    @Schema(description = "Это расход?", example = "false", defaultValue = "true")
+    private Boolean isSpending;
 }

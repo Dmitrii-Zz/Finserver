@@ -10,7 +10,9 @@ import ru.finan.finserver.user.model.User;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "categories")
+@Table(name = "categories",
+       uniqueConstraints = @UniqueConstraint(name = "name_spending",
+       columnNames = {"name", "is_spending", "user_id"}))
 public class Category {
 
     @Id
@@ -21,7 +23,7 @@ public class Category {
     private String name;
 
     @Column(name = "is_spending", nullable = false)
-    private boolean isSpending;
+    private Boolean isSpending;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
