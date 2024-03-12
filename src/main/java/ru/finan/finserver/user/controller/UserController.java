@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/user")
     public UserDto getUserByName(Authentication authentication) {
-        log.info("запрос с token: " + authenticationService);
+        log.info("запрос с token: '" + authenticationService + "'");
         return userService.getUserByName(authentication);
     }
 }
