@@ -18,7 +18,7 @@ public class CategoryController {
     @PostMapping
     public CategoryDto createCategory(Authentication authentication,
                                       @RequestBody @Validated CategoryDto categoryDto) {
-        log.info("Запрос на создание категории '" + categoryDto.getName() + "'" + ", spending: " + categoryDto.getIsSpending());
+        log.info("Запрос на создание категории '" + categoryDto.getName() + "'" + ", spending: " + categoryDto.isSpending());
         return categoryService.createCategory(categoryDto, authentication);
     }
 }

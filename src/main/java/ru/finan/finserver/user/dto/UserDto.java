@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Data
+@Builder
 public class UserDto {
 
     private long id;

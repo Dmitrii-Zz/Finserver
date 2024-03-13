@@ -2,9 +2,11 @@ package ru.finan.finserver.category.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Schema(description = "Добавление категории")
 public class CategoryDto {
 
@@ -13,5 +15,5 @@ public class CategoryDto {
     private String name;
 
     @Schema(description = "Это расход?", example = "false", defaultValue = "true")
-    private Boolean isSpending;
+    private boolean isSpending;
 }

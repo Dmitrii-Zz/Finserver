@@ -1,11 +1,21 @@
 package ru.finan.finserver.category.mapper;
 
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 import ru.finan.finserver.category.dto.CategoryDto;
 import ru.finan.finserver.category.model.Category;
 
-@Mapper(componentModel = "spring")
-public interface CategoryMapper {
-    Category toCategory(CategoryDto categoryDto);
-    CategoryDto toCategoryDto(Category category);
+@Component
+public class CategoryMapper {
+    public static Category toCategory(CategoryDto categoryDto) {
+        return Category.builder()
+                .name(categoryDto.getName())
+                .isSpending(categoryDto.isSpending())
+                .build();
+    }
+    public static CategoryDto toCategoryDto(Category category) {
+        return CategoryDto.builder()
+                .name(category.getName())
+                .isSpending(category.isSpending())
+                .build();
+    }
 }

@@ -1,14 +1,26 @@
 package ru.finan.finserver.user.mapper;
 
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 import ru.finan.finserver.user.dto.SignUpRequest;
 import ru.finan.finserver.user.dto.UserDto;
 import ru.finan.finserver.user.model.User;
 
-@Mapper(componentModel = "spring")
-public interface UserMapper {
+@Component
+public class UserMapper {
 
-    User toUser(SignUpRequest request);
+    public static User toUser(SignUpRequest request) {
+        return User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .build();
+    }
 
-    UserDto toUserDto(User user);
+    public static UserDto toUserDto(User user) {
+        return UserDto.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .id(user.getId())
+                .build();
+    }
 }

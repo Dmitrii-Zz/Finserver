@@ -14,12 +14,11 @@ import ru.finan.finserver.user.service.UserService;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryStorage;
-    private final CategoryMapper mapper;
     private final UserService userService;
 
     public CategoryDto createCategory(CategoryDto categoryDto, Authentication authentication) {
-        var category = mapper.toCategory(categoryDto);
+        var category = CategoryMapper.toCategory(categoryDto);
         category.setUser(userService.getByUserName(authentication.getName()));
-        return mapper.toCategoryDto(categoryStorage.save(category));
+        return CategoryMapper.toCategoryDto(categoryStorage.save(category));
     }
 }

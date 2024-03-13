@@ -23,7 +23,7 @@ public class Category {
     private String name;
 
     @Column(name = "is_spending", nullable = false)
-    private Boolean isSpending;
+    private boolean isSpending;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

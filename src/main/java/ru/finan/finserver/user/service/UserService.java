@@ -20,7 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userStorage;
-    private final UserMapper mapper;
     private final JwtService jwtService;
 
     public User createUser(User user) {
@@ -42,7 +41,7 @@ public class UserService {
     }
 
     public UserDto getUserByName(Authentication authentication) {
-        return mapper.toUserDto(getByUserName(authentication.getName()));
+        return UserMapper.toUserDto(getByUserName(authentication.getName()));
     }
 
     public void deleteUser(Authentication authentication) {
