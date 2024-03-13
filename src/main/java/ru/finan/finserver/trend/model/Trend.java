@@ -10,7 +10,9 @@ import ru.finan.finserver.user.model.User;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "trend_of_spending")
+@Table(name = "trend_of_spending",
+       uniqueConstraints = @UniqueConstraint(name = "name_trend_and_name_trend",
+       columnNames = {"name", "user_id"}))
 public class Trend {
 
     @Id

@@ -18,6 +18,11 @@ public class CategoryService {
 
     public CategoryDto createCategory(CategoryDto categoryDto, Authentication authentication) {
         var category = CategoryMapper.toCategory(categoryDto);
+
+        if (category.getIsSpending() == null) {
+            category.setIsSpending(true);
+        }
+
         category.setUser(userService.getByUserName(authentication.getName()));
         return CategoryMapper.toCategoryDto(categoryStorage.save(category));
     }

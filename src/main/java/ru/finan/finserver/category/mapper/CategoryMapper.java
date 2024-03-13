@@ -9,13 +9,13 @@ public class CategoryMapper {
     public static Category toCategory(CategoryDto categoryDto) {
         return Category.builder()
                 .name(categoryDto.getName())
-                .isSpending(categoryDto.isSpending())
+                .isSpending(categoryDto.getIsSpending())
                 .build();
     }
     public static CategoryDto toCategoryDto(Category category) {
         return CategoryDto.builder()
                 .name(category.getName())
-                .isSpending(category.isSpending())
+                .isSpending(category.getIsSpending())
                 .build();
     }
 }
