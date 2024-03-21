@@ -14,7 +14,7 @@ import ru.finan.finserver.trend.service.TrendService;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("finserver/categories")
+@RequestMapping("finserver/trend")
 public class TrendController {
     private final TrendService trendService;
 
