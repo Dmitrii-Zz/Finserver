@@ -11,7 +11,7 @@ import ru.finan.finserver.user.model.User;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "trend_of_spending",
-       uniqueConstraints = @UniqueConstraint(name = "name_trend_and_name_trend",
+       uniqueConstraints = @UniqueConstraint(name = "name_trend_and_user_name",
        columnNames = {"name", "user_id"}))
 public class Trend {
 
