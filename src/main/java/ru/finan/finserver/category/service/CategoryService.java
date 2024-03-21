@@ -6,7 +6,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.finan.finserver.category.dto.CategoryDto;
 import ru.finan.finserver.category.mapper.CategoryMapper;
+import ru.finan.finserver.category.model.Category;
 import ru.finan.finserver.category.repository.CategoryRepository;
+import ru.finan.finserver.exceptions.model.CategoryByNameNotFoundException;
 import ru.finan.finserver.user.service.UserService;
 
 @Slf4j
@@ -25,5 +27,15 @@ public class CategoryService {
 
         category.setUser(userService.getByUserName(authentication.getName()));
         return CategoryMapper.toCategoryDto(categoryStorage.save(category));
+    }
+
+    public Category findCategoryByName(String name) {
+        Category category = categoryStorage.findByName(name);
+
+        if (category == null) {
+            throw new CategoryByNameNotFoundException("Отсутствует категория с именем '" + name + "'.");
+        }
+
+        return category;
     }
 }
