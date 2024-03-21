@@ -3,13 +3,13 @@ package ru.finan.finserver.finanse.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
-import ru.finan.finserver.category.dto.CategoryDto;
-import ru.finan.finserver.trend.model.Trend;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @Schema(description = "Сохранить запись")
 public class ExpenseDto {
 
@@ -17,12 +17,12 @@ public class ExpenseDto {
     private LocalDateTime created;
 
     @NotNull
-    @Schema(description = "Категория траты")
-    private CategoryDto category;
+    @Schema(description = "Категория траты", example = "Продукты")
+    private String category;
 
     @NotNull
-    @Schema(description = "Направление траты")
-    private Trend trend;
+    @Schema(description = "Направление траты", example = "Семья")
+    private String trend;
 
     @Size(max = 255, message = "Заметка должна содержать не более 255 символов.")
     @Schema(description = "Краткая заметка", example = "Хлеб")
