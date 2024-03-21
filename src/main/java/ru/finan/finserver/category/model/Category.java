@@ -11,7 +11,7 @@ import ru.finan.finserver.user.model.User;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "categories",
-       uniqueConstraints = @UniqueConstraint(name = "name_spending",
+       uniqueConstraints = @UniqueConstraint(name = "name_spending_user_name",
        columnNames = {"name", "is_spending", "user_id"}))
 public class Category {
 
