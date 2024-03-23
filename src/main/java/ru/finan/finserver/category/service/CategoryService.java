@@ -29,8 +29,8 @@ public class CategoryService {
         return CategoryMapper.toCategoryDto(categoryStorage.save(category));
     }
 
-    public Category findCategoryByName(String name) {
-        Category category = categoryStorage.findByName(name);
+    public Category findCategoryUsers(String name, long userId) {
+        Category category = categoryStorage.findByNameAndUserId(name, userId);
 
         if (category == null) {
             throw new CategoryByNameNotFoundException("Отсутствует категория с именем '" + name + "'.");
