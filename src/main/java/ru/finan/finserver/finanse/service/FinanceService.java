@@ -3,11 +3,14 @@ package ru.finan.finserver.finanse.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.finan.finserver.category.model.Category;
 import ru.finan.finserver.category.service.CategoryService;
 import ru.finan.finserver.finanse.dto.ExpenseDto;
+import ru.finan.finserver.finanse.mapper.ExpenseMapper;
 import ru.finan.finserver.finanse.repository.ExpenseRepository;
 import ru.finan.finserver.trend.service.TrendService;
+import ru.finan.finserver.user.service.UserService;
+
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -15,10 +18,19 @@ public class FinanceService {
     private final ExpenseRepository expenseStorage;
     private final CategoryService categoryService;
     private final TrendService trendService;
+    private final UserService userService;
 
     public ExpenseDto addExpense(Authentication authentication, ExpenseDto expenseDto) {
-        Category category = categoryService.findCategoryByName(expenseDto.getCategory());
+        var expense = ExpenseMapper.toExpense(expenseDto);
+        var user = userService.getByUserName(authentication.getName());
+        expense.setCategory(categoryService.findCategoryUsers(expenseDto.getNameCategory(), user.getId()));
+        expense.setTrend(trendService.findTrendByNameAndUserId(expenseDto.getNameTrend(), user.getId()));
+        expense.setUser(user);
 
-        return null;
+        if (expense.getCreated() == null) {
+            expense.setCreated(LocalDate.now());
+        }
+
+        return ExpenseMapper.toExpenseDto(expenseStorage.save(expense));
     }
 }
