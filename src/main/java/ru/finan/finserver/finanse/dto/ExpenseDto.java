@@ -19,7 +19,7 @@ public class ExpenseDto {
 
     @NotNull
     @Schema(description = "Категория траты", example = "Продукты")
-    private CategoryByExpenseDto nameCategory;
+    private CategoryByExpenseDto category;
 
     @NotNull
     @Schema(description = "Направление траты", example = "Семья")
