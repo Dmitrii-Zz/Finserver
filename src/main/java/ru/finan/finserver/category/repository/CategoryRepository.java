@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.finan.finserver.category.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    Category findByNameAndUserId(String name, long userId);
+    Category findByNameAndUserIdAndIsSpending(String name, long userId, boolean isSpending);
 }
