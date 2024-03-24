@@ -29,13 +29,15 @@ public class CategoryService {
         return CategoryMapper.toCategoryDto(categoryStorage.save(category));
     }
 
-    public Category findCategoryUsers(String name, long userId) {
-        Category category = categoryStorage.findByNameAndUserId(name, userId);
+    public Category findCategoryUsers(Category category) {
+        Category categoryFromBd = categoryStorage.findByNameAndUserIdAndIsSpending(category.getName(),
+                category.getUser().getId(), category.getIsSpending());
 
-        if (category == null) {
-            throw new CategoryByNameNotFoundException("Отсутствует категория с именем '" + name + "'.");
+        if (categoryFromBd == null) {
+            throw new CategoryByNameNotFoundException("Отсутствует категория с именем '" + category.getName()
+                    + "' и флагом '" + category.getIsSpending() + "'.");
         }
 
-        return category;
+        return categoryFromBd;
     }
 }
