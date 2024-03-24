@@ -23,9 +23,13 @@ public class FinanceService {
     public ExpenseDto addExpense(Authentication authentication, ExpenseDto expenseDto) {
         var expense = ExpenseMapper.toExpense(expenseDto);
         var user = userService.getByUserName(authentication.getName());
-        expense.setCategory(categoryService.findCategoryUsers(expenseDto.getNameCategory(), user.getId()));
-        expense.setTrend(trendService.findTrendByNameAndUserId(expenseDto.getNameTrend(), user.getId()));
         expense.setUser(user);
+
+        expense.getCategory().setUser(user);
+        var category = categoryService.findCategoryUsers(expense.getCategory());
+        expense.setCategory(category);
+
+        expense.setTrend(trendService.findTrendByNameAndUserId(expenseDto.getNameTrend(), user.getId()));
 
         if (expense.getCreated() == null) {
             expense.setCreated(LocalDate.now());
