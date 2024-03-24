@@ -19,13 +19,13 @@ public class UserController {
 
     @PostMapping("/auth/sign-up")
     public JwtAuthenticationResponse signUp(@RequestBody @Validated SignUpRequest request) {
-        log.info("Запрос на регистрацию юзера '" + request.getName() + "'");
+        log.info("Запрос на регистрацию юзера '" + request.getName() + "'.");
         return authenticationService.signUp(request);
     }
 
     @PostMapping("/auth/sing-in")
     public JwtAuthenticationResponse signIn(@RequestBody @Validated SignInRequest request) {
-        log.info("Запрос на авторизацию пользователя '" + request.getName() + "'");
+        log.info("Запрос на авторизацию пользователя '" + request.getName() + "'.");
         return authenticationService.signIn(request);
     }
 
@@ -36,7 +36,13 @@ public class UserController {
 
     @GetMapping("/user")
     public UserDto getUserByName(Authentication authentication) {
-        log.info("запрос с token: '" + authenticationService + "'");
+        log.info("запрос пользователя: '" + authentication.getName() + "'.");
         return userService.getUserByName(authentication);
+    }
+
+    public UserDto updateUser(Authentication authentication,
+                              @RequestBody @Validated UserDto userDto) {
+        log.info("Запрос на обновления пользователя: '" + userDto.getName() + "'.");
+        return userService.updateUser(authentication, userDto);
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userStorage;
-    private final JwtService jwtService;
 
     public User createUser(User user) {
         return userStorage.save(user);
@@ -52,5 +51,9 @@ public class UserService {
         }
 
         userStorage.delete(optionalUser.get());
+    }
+
+    public UserDto updateUser(Authentication authentication, UserDto userDto) {
+        return null;
     }
 }
